@@ -20,8 +20,8 @@ runApp(
       
       observe({
         if(!is.null(input$textID)){
-          if(){
-            
+          if(input$textID != ""){
+            ss$set("myVar", input$textID)
           }
         }
       })
