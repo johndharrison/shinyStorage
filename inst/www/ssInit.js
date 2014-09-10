@@ -11,3 +11,49 @@ Shiny.addCustomMessageHandler("SSget",
     Shiny.onInputChange("ssInputVar", checkVar)
   }
 );
+
+Shiny.addCustomMessageHandler("SSdel",
+  function(message) {
+    checkVar = simpleStorage.deleteKey(message.key);
+  }
+);
+
+Shiny.addCustomMessageHandler("SSsetTTL",
+  function(message) {
+    checkVar = simpleStorage.setTTL(message.key, message.ttl);
+  }
+);
+
+Shiny.addCustomMessageHandler("SSgetTTL",
+  function(message) {
+    checkVar = simpleStorage.getTTL(message.key);
+    Shiny.onInputChange("ssInputVar", checkVar)
+  }
+);
+
+Shiny.addCustomMessageHandler("SSflush",
+  function(message) {
+    checkVar = simpleStorage.flush();
+  }
+);
+
+Shiny.addCustomMessageHandler("SSindex",
+  function(message) {
+    checkVar = simpleStorage.index();
+  }
+);
+
+Shiny.addCustomMessageHandler("SSstorageSize",
+  function(message) {
+    checkVar = simpleStorage.storageSize();
+  }
+);
+
+Shiny.addCustomMessageHandler("SScanUse",
+  function(message) {
+    checkVar = simpleStorage.canUse();
+  }
+);
+
+
+

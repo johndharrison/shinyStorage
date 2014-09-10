@@ -27,31 +27,49 @@ shinyStore <- setRefClass("shinyStore", ,
                             },
                             
                             deleteKey = function(key){
-                              
+                              session$sendCustomMessage(
+                                "SSdel", 
+                                list(key = key))
                             },
                             
                             setTTL = function(key, ttl){
-                              
+                              session$sendCustomMessage(
+                                "SSsetTTL", 
+                                list(key = key, ttl = ttl))                              
                             },
                             
                             getTTL = function(key){
-                              
+                              session$sendCustomMessage(
+                                "SSgetTTL", 
+                                list(key = key))
+                              session$input[["ssInputVar"]]                              
                             },
                             
                             flush = function(){
-                              
+                              session$sendCustomMessage(
+                                "SSflush", 
+                                list())                              
                             },
                             
                             index = function(){
-                              
+                              session$sendCustomMessage(
+                                "SSindex", 
+                                list())                                                            
+                              session$input[["ssInputVar"]]                              
                             },
                             
                             storageSize = function(){
-                              
+                              session$sendCustomMessage(
+                                "SSstorageSize", 
+                                list())                                                            
+                              session$input[["ssInputVar"]]                                                            
                             },
                             
                             canUse = function(){
-                              
+                              session$sendCustomMessage(
+                                "SScanUse", 
+                                list())                                                            
+                              session$input[["ssInputVar"]]                                                                                          
                             }
                           )
 )
