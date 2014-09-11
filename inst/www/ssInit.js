@@ -55,5 +55,11 @@ Shiny.addCustomMessageHandler("SScanUse",
   }
 );
 
-
+var fileInterval = setInterval(function(){
+    if (typeof Shiny !== 'undefined'){
+      checkVar = simpleStorage.get('myVar');
+      Shiny.onInputChange("ssInputVar", checkVar);
+      clearInterval(fileInterval);
+    }
+},100);
 
