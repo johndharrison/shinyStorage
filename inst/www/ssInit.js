@@ -58,6 +58,9 @@ Shiny.addCustomMessageHandler("SScanUse",
 var fileInterval = setInterval(function(){
     if (typeof Shiny !== 'undefined'){
       checkVar = simpleStorage.get('myVar');
+      if(typeof checkVar === "undefined"){
+        checkVar = "SSNOTINITIALISED"
+      }
       Shiny.onInputChange("ssInputVar", checkVar);
       clearInterval(fileInterval);
     }

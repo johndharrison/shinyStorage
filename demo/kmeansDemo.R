@@ -31,7 +31,6 @@ runApp(port = 5678,
          })
          
          output$testUI <- renderUI({
-           print('hit vanilla')
            tagList(
              selectInput('xcol', 'X Variable', names(iris), selectize = FALSE),
              selectInput('ycol', 'Y Variable', names(iris),
@@ -42,16 +41,17 @@ runApp(port = 5678,
          })
          observe({
            myVar <- input$ssInputVar
+           if(is.null(myVar)){return()}
+           if(myVar == "SSNOTINITIALISED"){return()}
+           print('jnjnj')
            updateSelectInput(session, 'xcol', 'X Variable', names(iris), selected = myVar$xcol)
            updateSelectInput(session, 'ycol', 'Y Variable', names(iris), selected = myVar$ycol)
            updateNumericInput(session, 'clusters', 'Cluster count', value = myVar$clusters,
                               min = 1, max = 9)           
          })
          observe({
-           print(input$ssInputVar)
            if(!is.null(input$ssInputVar)){
              if(!is.null(input$xcol) && !is.null(input$ycol) && !is.null(input$clusters) ){
-               print('hit observe')
                myList <- list(xcol = input$xcol, ycol = input$ycol, clusters = input$clusters)
                ss$set("myVar", myList)
              }
